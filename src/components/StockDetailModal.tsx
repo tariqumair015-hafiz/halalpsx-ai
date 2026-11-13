@@ -47,53 +47,53 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({ stock, onClo
   const lowerLock = stock.lowerLockPrice || Number((p * 0.925).toFixed(2));
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-md">
       <motion.div 
         initial={{ opacity: 0, scale: 0.93, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.93, y: 20 }}
         transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-        className="bg-[#0f172a] border border-slate-800 rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl p-6 space-y-5"
+        className="bg-[#12262A] border border-[#1F383D] rounded-2xl sm:rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl p-4 sm:p-6 space-y-4 sm:space-y-5"
       >
         
         {/* Header */}
-        <div className="flex items-start justify-between pb-4 border-b border-slate-800">
+        <div className="flex items-start justify-between pb-3 sm:pb-4 border-b border-[#1F383D]">
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-2xl font-extrabold text-white font-mono">{stock.symbol}</h2>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-white font-mono">{stock.symbol}</h2>
               {stock.shariahCompliant ? (
-                <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
-                  <span>🌙</span> KMI Shariah Compliant
+                <span className="px-2 py-0.5 rounded text-[10px] sm:text-xs font-bold bg-[#028C8C]/20 text-[#028C8C] border border-[#028C8C]/30 flex items-center gap-1">
+                  <span>🌙</span> KMI Shariah
                 </span>
               ) : (
-                <span className="px-2 py-0.5 rounded text-xs font-medium bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                <span className="px-2 py-0.5 rounded text-[10px] sm:text-xs font-medium bg-rose-500/10 text-rose-400 border border-rose-500/20">
                   Non-Shariah
                 </span>
               )}
             </div>
-            <p className="text-sm text-slate-400 mt-0.5">{stock.name} • {stock.sector}</p>
+            <p className="text-xs sm:text-sm text-[#9AA3AF] mt-0.5">{stock.name} • {stock.sector}</p>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+            className="p-1.5 sm:p-2 rounded-xl bg-[#0F1D21] hover:bg-[#152B30] text-[#9AA3AF] hover:text-white transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Live Price + PSX Circuit Limits (+7.5% / -7.5%) */}
-        <div className="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-3">
-          <div className="flex flex-wrap items-baseline justify-between gap-4">
+        <div className="bg-[#0F1D21] p-3.5 sm:p-4 rounded-2xl border border-[#1F383D] space-y-3">
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
             <div>
-              <div className="text-xs text-slate-400 uppercase tracking-wider">Live DPS Price</div>
-              <div className="text-3xl font-extrabold text-white font-mono mt-0.5">
+              <div className="text-[11px] text-[#9AA3AF] uppercase tracking-wider">Live DPS Price</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono mt-0.5">
                 Rs {stock.currentPrice.toFixed(2)}
               </div>
             </div>
 
             <div className="flex items-center gap-2">
-              <div className={`flex items-center text-sm font-mono font-bold px-3 py-1.5 rounded-xl ${
+              <div className={`flex items-center text-xs sm:text-sm font-mono font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl ${
                 isUp ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20' : 'text-rose-400 bg-rose-500/10 border border-rose-500/20'
               }`}>
                 {isUp ? <TrendingUp className="w-4 h-4 mr-1" /> : <TrendingDown className="w-4 h-4 mr-1" />}
@@ -120,22 +120,22 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({ stock, onClo
           )}
 
           {/* Daily Price Bounds & Circuit Limits */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-800/80 text-xs font-mono">
-            <div className="p-2 rounded-xl bg-slate-950/60 border border-slate-800">
-              <div className="text-[10px] text-slate-500 uppercase">Day Low</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-[#1F383D] text-xs font-mono">
+            <div className="p-2 rounded-xl bg-[#0B1417] border border-[#1F383D]">
+              <div className="text-[10px] text-[#9AA3AF] uppercase">Day Low</div>
               <div className="text-rose-400 font-bold mt-0.5">Rs {stock.low.toFixed(2)}</div>
             </div>
-            <div className="p-2 rounded-xl bg-slate-950/60 border border-slate-800">
-              <div className="text-[10px] text-slate-500 uppercase">Day High</div>
+            <div className="p-2 rounded-xl bg-[#0B1417] border border-[#1F383D]">
+              <div className="text-[10px] text-[#9AA3AF] uppercase">Day High</div>
               <div className="text-emerald-400 font-bold mt-0.5">Rs {stock.high.toFixed(2)}</div>
             </div>
-            <div className="p-2 rounded-xl bg-amber-950/30 border border-amber-800/50">
+            <div className="p-2 rounded-xl bg-amber-950/20 border border-amber-800/40">
               <div className="text-[10px] text-amber-400 uppercase font-bold flex items-center gap-1">
                 <ArrowUpRight className="w-3 h-3" /> Upper Lock (+7.5%)
               </div>
               <div className="text-amber-300 font-extrabold mt-0.5">Rs {upperLock.toFixed(2)}</div>
             </div>
-            <div className="p-2 rounded-xl bg-rose-950/30 border border-rose-800/50">
+            <div className="p-2 rounded-xl bg-rose-950/20 border border-rose-800/40">
               <div className="text-[10px] text-rose-400 uppercase font-bold flex items-center gap-1">
                 <ArrowDownRight className="w-3 h-3" /> Lower Lock (-7.5%)
               </div>
@@ -145,13 +145,13 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({ stock, onClo
         </div>
 
         {/* Quick Strategy Action Triggers (Investify AI Style) */}
-        <div className="bg-gradient-to-r from-emerald-950/30 via-slate-900 to-amber-950/20 p-4 rounded-2xl border border-emerald-500/20 space-y-2">
+        <div className="bg-[#0F1D21] p-3.5 sm:p-4 rounded-2xl border border-[#1F383D] space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
               <Zap className="w-3.5 h-3.5 text-amber-400" />
               <span>Smart Trading Triggers</span>
             </span>
-            <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full font-mono">
+            <span className="text-[10px] text-[#028C8C] bg-[#028C8C]/15 px-2 py-0.5 rounded-full font-mono font-bold">
               1-Click Watcher
             </span>
           </div>
@@ -162,7 +162,7 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({ stock, onClo
                 onClose();
                 onSetRule(stock, { triggerType: 'UPPER_LOCK', sellPercentage: 100 });
               }}
-              className="p-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-left transition-all group"
+              className="p-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-left transition-all group cursor-pointer"
             >
               <div className="flex items-center justify-between text-xs font-bold text-amber-300 group-hover:text-amber-200">
                 <span className="flex items-center gap-1.5">
@@ -171,7 +171,7 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({ stock, onClo
                 </span>
                 <span className="font-mono text-[11px]">Rs {upperLock.toFixed(2)}</span>
               </div>
-              <p className="text-[11px] text-slate-400 mt-1">
+              <p className="text-[11px] text-[#9AA3AF] mt-1">
                 Upper Circuit (+7.5%) touch hotay hi 100% maal auto-exit alert trigger karega.
               </p>
             </button>
@@ -181,7 +181,7 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({ stock, onClo
                 onClose();
                 onSetRule(stock, { triggerType: 'STOP_LOSS_LOW', sellPercentage: 100 });
               }}
-              className="p-3 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-left transition-all group"
+              className="p-3 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-left transition-all group cursor-pointer"
             >
               <div className="flex items-center justify-between text-xs font-bold text-rose-300 group-hover:text-rose-200">
                 <span className="flex items-center gap-1.5">
@@ -190,7 +190,7 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({ stock, onClo
                 </span>
                 <span className="font-mono text-[11px]">Rs {stock.low.toFixed(2)}</span>
               </div>
-              <p className="text-[11px] text-slate-400 mt-1">
+              <p className="text-[11px] text-[#9AA3AF] mt-1">
                 Day Low breach hotay hi capital protection alert trigger kar k poora maal cut karega.
               </p>
             </button>
@@ -198,39 +198,39 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({ stock, onClo
         </div>
 
         {/* Modal Tabs Navigation */}
-        <div className="flex items-center gap-1 p-1 bg-slate-900 border border-slate-800 rounded-xl text-xs font-semibold overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-1 p-1 bg-[#0F1D21] border border-[#1F383D] rounded-xl text-xs font-semibold overflow-x-auto no-scrollbar">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-all ${
-              activeTab === 'overview' ? 'bg-emerald-500 text-slate-950 font-bold' : 'text-slate-400 hover:text-white'
+            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-all cursor-pointer ${
+              activeTab === 'overview' ? 'bg-[#028C8C] text-white font-bold' : 'text-[#9AA3AF] hover:text-white'
             }`}
           >
-            Overview & Fundamentals
+            Overview
           </button>
           <button
             onClick={() => setActiveTab('ai_research')}
-            className={`px-3 py-1.5 rounded-lg whitespace-nowrap flex items-center gap-1.5 transition-all ${
-              activeTab === 'ai_research' ? 'bg-emerald-500 text-slate-950 font-bold' : 'text-emerald-400 hover:text-white'
+            className={`px-3 py-1.5 rounded-lg whitespace-nowrap flex items-center gap-1.5 transition-all cursor-pointer ${
+              activeTab === 'ai_research' ? 'bg-[#028C8C] text-white font-bold' : 'text-[#028C8C] hover:text-white'
             }`}
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>AI Company Intelligence</span>
+            <span>AI Research</span>
           </button>
           <button
             onClick={() => setActiveTab('technicals')}
-            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-all ${
-              activeTab === 'technicals' ? 'bg-emerald-500 text-slate-950 font-bold' : 'text-slate-400 hover:text-white'
+            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-all cursor-pointer ${
+              activeTab === 'technicals' ? 'bg-[#028C8C] text-white font-bold' : 'text-[#9AA3AF] hover:text-white'
             }`}
           >
-            Technicals & Pivots
+            Technicals
           </button>
           <button
             onClick={() => setActiveTab('shariah')}
-            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-all ${
-              activeTab === 'shariah' ? 'bg-emerald-500 text-slate-950 font-bold' : 'text-slate-400 hover:text-white'
+            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-all cursor-pointer ${
+              activeTab === 'shariah' ? 'bg-[#028C8C] text-white font-bold' : 'text-[#9AA3AF] hover:text-white'
             }`}
           >
-            Shariah Audit & Zakat
+            Shariah Audit
           </button>
         </div>
 
@@ -423,10 +423,10 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({ stock, onClo
         )}
 
         {/* Footer Buttons */}
-        <div className="pt-4 border-t border-slate-800 flex items-center justify-between gap-3">
+        <div className="pt-3 sm:pt-4 border-t border-[#1F383D] flex items-center justify-between gap-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition-colors"
+            className="px-4 py-2 rounded-xl bg-[#0F1D21] hover:bg-[#152B30] text-[#9AA3AF] hover:text-white font-semibold text-xs transition-colors cursor-pointer"
           >
             Close
           </button>
@@ -436,10 +436,11 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({ stock, onClo
               onClose();
               onSetRule(stock);
             }}
-            className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-xs transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-1.5"
+            className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-[#028C8C] hover:bg-[#027575] text-white font-bold text-xs transition-all shadow-lg shadow-[#028C8C]/20 flex items-center gap-1.5 cursor-pointer"
           >
             <Target className="w-4 h-4" />
-            <span>Set Custom Target Rule for {stock.symbol}</span>
+            <span className="hidden sm:inline">Set Custom Target Rule for</span>
+            <span>{stock.symbol}</span>
           </button>
         </div>
       </motion.div>

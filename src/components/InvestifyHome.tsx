@@ -233,55 +233,55 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
   ];
 
   return (
-    <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-12 py-6 space-y-10">
+    <div className="w-full max-w-[1536px] mx-auto px-3 sm:px-6 lg:px-12 py-4 sm:py-6 space-y-6 sm:space-y-10">
       
       {/* =========================================================================
           SECTION 1: HERO (INVESTIFY EXACT DOM & TYPOGRAPHY)
       ========================================================================= */}
       <section className="relative">
-        <div className="mb-5">
+        <div className="mb-4 sm:mb-5">
           <div className="flex items-start justify-between gap-4">
-            <h1 className="font-semibold tracking-[-0.01em] text-white text-[28px] sm:text-[34px] leading-snug sm:leading-10">
+            <h1 className="font-semibold tracking-tight text-white text-xl sm:text-2xl md:text-[34px] leading-tight sm:leading-10">
               PSX Today: <span className="text-[#028C8C]">KSE-100</span> Index Live, Share Prices and News
             </h1>
           </div>
           
-          <p className="mt-2 max-w-3xl text-[14px] sm:text-[15px] leading-6 text-[#9AA3AF]">
+          <p className="mt-1.5 sm:mt-2 max-w-3xl text-xs sm:text-[14px] sm:leading-6 text-[#9AA3AF]">
             <span className="font-semibold text-[#028C8C]">KSE-100 index</span>: {macro.kse100.index.toLocaleString('en-PK', { minimumFractionDigits: 2 })} (+500.11, +0.28%). PSX share prices, market movers, company announcements and business news, all in one place.
           </p>
 
           {/* Pill Category Switcher (Investify Exact Pill: Indices | Stocks | Sectors) */}
-          <div className="mt-5 inline-flex items-center gap-1 self-start rounded-full bg-[#12262A] p-1 border border-[#1F383D]">
+          <div className="mt-4 sm:mt-5 inline-flex items-center gap-1 self-start rounded-full bg-[#12262A] p-0.5 sm:p-1 border border-[#1F383D]">
             <button
               type="button"
               onClick={() => setHeroCategory('indices')}
-              className={`flex h-8 sm:h-9 items-center gap-2 whitespace-nowrap rounded-full px-3.5 text-xs sm:text-[14px] font-semibold transition-colors cursor-pointer ${
+              className={`flex h-7 sm:h-9 items-center gap-1.5 sm:gap-2 whitespace-nowrap rounded-full px-3 sm:px-3.5 text-xs sm:text-[14px] font-semibold transition-colors cursor-pointer ${
                 heroCategory === 'indices'
                   ? 'bg-[#028C8C] text-white shadow-sm'
                   : 'text-[#9AA3AF] hover:text-white'
               }`}
             >
-              <BarChart2 className="w-4 h-4" />
+              <BarChart2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Indices</span>
             </button>
 
             <button
               type="button"
               onClick={() => setHeroCategory('stocks')}
-              className={`flex h-8 sm:h-9 items-center gap-2 whitespace-nowrap rounded-full px-3.5 text-xs sm:text-[14px] font-semibold transition-colors cursor-pointer ${
+              className={`flex h-7 sm:h-9 items-center gap-1.5 sm:gap-2 whitespace-nowrap rounded-full px-3 sm:px-3.5 text-xs sm:text-[14px] font-semibold transition-colors cursor-pointer ${
                 heroCategory === 'stocks'
                   ? 'bg-[#028C8C] text-white shadow-sm'
                   : 'text-[#9AA3AF] hover:text-white'
               }`}
             >
-              <TrendingUp className="w-4 h-4" />
+              <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Stocks</span>
             </button>
 
             <button
               type="button"
               onClick={() => setHeroCategory('sectors')}
-              className={`flex h-8 sm:h-9 items-center gap-2 whitespace-nowrap rounded-full px-3.5 text-xs sm:text-[14px] font-semibold transition-colors cursor-pointer ${
+              className={`flex h-7 sm:h-9 items-center gap-1.5 sm:gap-2 whitespace-nowrap rounded-full px-3 sm:px-3.5 text-xs sm:text-[14px] font-semibold transition-colors cursor-pointer ${
                 heroCategory === 'sectors'
                   ? 'bg-[#028C8C] text-white shadow-sm'
                   : 'text-[#9AA3AF] hover:text-white'
@@ -293,72 +293,72 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
         </div>
 
         {/* Investify Benchmark Horizontal Index Cards */}
-        <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-2 no-scrollbar scroll-smooth">
+        <div className="flex gap-3 sm:gap-6 overflow-x-auto pb-2 no-scrollbar scroll-smooth -mx-3 px-3 sm:mx-0 sm:px-0">
           {/* Card 1: KSE-100 */}
-          <div className="min-w-[210px] sm:min-w-[240px] shrink-0 rounded-[22px] border border-[#028C8C]/50 bg-[#12262A] p-4 text-left shadow-lg">
+          <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#028C8C]/50 bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
             <div className="flex items-center justify-between text-xs text-[#9AA3AF] mb-1">
-              <span className="font-bold text-white text-sm">KSE100</span>
-              <span className="text-[#028C8C] font-bold text-xs flex items-center">
+              <span className="font-bold text-white text-xs sm:text-sm">KSE100</span>
+              <span className="text-[#028C8C] font-bold text-[11px] sm:text-xs flex items-center">
                 <TrendingUp className="w-3 h-3 mr-0.5" /> +0.28%
               </span>
             </div>
-            <div className="text-xl font-extrabold text-white font-mono">
+            <div className="text-lg sm:text-xl font-extrabold text-white font-mono">
               {macro.kse100.index.toLocaleString('en-PK', { minimumFractionDigits: 2 })}
             </div>
-            <div className="flex items-center justify-between text-[11px] text-[#9AA3AF] mt-2 font-mono">
+            <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#9AA3AF] mt-2 font-mono">
               <span>+500.11 pts</span>
-              <Sparkline data={macro.kse100.sparkline || [97000, 97500, 98200, 98420]} isUp={true} width={75} height={20} />
+              <Sparkline data={macro.kse100.sparkline || [97000, 97500, 98200, 98420]} isUp={true} width={70} height={18} />
             </div>
           </div>
 
           {/* Card 2: KMI-30 (Islamic Benchmark) */}
-          <div className="min-w-[210px] sm:min-w-[240px] shrink-0 rounded-[22px] border border-[#028C8C] bg-[#12262A] p-4 text-left shadow-lg">
+          <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#028C8C] bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
             <div className="flex items-center justify-between text-xs mb-1">
-              <span className="font-bold text-white text-sm flex items-center gap-1">
+              <span className="font-bold text-white text-xs sm:text-sm flex items-center gap-1">
                 <span>🌙</span> KMI30
               </span>
-              <span className="text-[#028C8C] font-bold text-xs flex items-center">
+              <span className="text-[#028C8C] font-bold text-[11px] sm:text-xs flex items-center">
                 <TrendingUp className="w-3 h-3 mr-0.5" /> +0.60%
               </span>
             </div>
-            <div className="text-xl font-extrabold text-white font-mono">
+            <div className="text-lg sm:text-xl font-extrabold text-white font-mono">
               {macro.kmi30.index.toLocaleString('en-PK', { minimumFractionDigits: 2 })}
             </div>
-            <div className="flex items-center justify-between text-[11px] text-[#028C8C] mt-2 font-mono">
-              <span>+845.20 pts (Shariah)</span>
-              <Sparkline data={macro.kmi30.sparkline || [141000, 142000, 142850]} isUp={true} width={75} height={20} />
+            <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#028C8C] mt-2 font-mono">
+              <span>+845.20 pts</span>
+              <Sparkline data={macro.kmi30.sparkline || [141000, 142000, 142850]} isUp={true} width={70} height={18} />
             </div>
           </div>
 
           {/* Card 3: KMI-ALL */}
-          <div className="min-w-[210px] sm:min-w-[240px] shrink-0 rounded-[22px] border border-[#1F383D] bg-[#12262A] p-4 text-left shadow-lg">
+          <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#1F383D] bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
             <div className="flex items-center justify-between text-xs text-[#9AA3AF] mb-1">
-              <span className="font-bold text-white text-sm flex items-center gap-1">
+              <span className="font-bold text-white text-xs sm:text-sm flex items-center gap-1">
                 <span>🌙</span> KMIALL
               </span>
-              <span className="text-[#028C8C] font-bold text-xs flex items-center">
+              <span className="text-[#028C8C] font-bold text-[11px] sm:text-xs flex items-center">
                 <TrendingUp className="w-3 h-3 mr-0.5" /> +0.55%
               </span>
             </div>
-            <div className="text-xl font-extrabold text-white font-mono">35,420.80</div>
-            <div className="flex items-center justify-between text-[11px] text-[#9AA3AF] mt-2 font-mono">
+            <div className="text-lg sm:text-xl font-extrabold text-white font-mono">35,420.80</div>
+            <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#9AA3AF] mt-2 font-mono">
               <span>+194.30 pts</span>
-              <Sparkline data={[34800, 35100, 35300, 35420]} isUp={true} width={75} height={20} />
+              <Sparkline data={[34800, 35100, 35300, 35420]} isUp={true} width={70} height={18} />
             </div>
           </div>
 
           {/* Card 4: KSE-30 */}
-          <div className="min-w-[210px] sm:min-w-[240px] shrink-0 rounded-[22px] border border-[#1F383D] bg-[#12262A] p-4 text-left shadow-lg">
+          <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#1F383D] bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
             <div className="flex items-center justify-between text-xs text-[#9AA3AF] mb-1">
-              <span className="font-bold text-white text-sm">KSE30</span>
-              <span className="text-[#028C8C] font-bold text-xs flex items-center">
+              <span className="font-bold text-white text-xs sm:text-sm">KSE30</span>
+              <span className="text-[#028C8C] font-bold text-[11px] sm:text-xs flex items-center">
                 <TrendingUp className="w-3 h-3 mr-0.5" /> +0.72%
               </span>
             </div>
-            <div className="text-xl font-extrabold text-white font-mono">30,118.40</div>
-            <div className="flex items-center justify-between text-[11px] text-[#9AA3AF] mt-2 font-mono">
+            <div className="text-lg sm:text-xl font-extrabold text-white font-mono">30,118.40</div>
+            <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#9AA3AF] mt-2 font-mono">
               <span>+215.10 pts</span>
-              <Sparkline data={[29800, 30000, 30050, 30118]} isUp={true} width={75} height={20} />
+              <Sparkline data={[29800, 30000, 30050, 30118]} isUp={true} width={70} height={18} />
             </div>
           </div>
         </div>
@@ -471,12 +471,12 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
             <table className="w-full text-left text-xs">
               <thead className="bg-[#0B1417] text-[#9AA3AF] font-mono text-[11px] border-b border-[#1F383D]">
                 <tr>
-                  <th className="py-3 px-4 font-semibold">Stock</th>
-                  <th className="py-3 px-4 font-semibold text-right">Price (PKR)</th>
-                  <th className="py-3 px-4 font-semibold text-right">Change (%)</th>
-                  <th className="py-3 px-4 font-semibold text-center hidden md:table-cell">7-Day Chart</th>
-                  <th className="py-3 px-4 font-semibold text-right hidden sm:table-cell">Volume</th>
-                  <th className="py-3 px-4 font-semibold text-center">Cloud Watcher</th>
+                  <th className="py-2.5 sm:py-3 px-2.5 sm:px-4 font-semibold">Stock</th>
+                  <th className="py-2.5 sm:py-3 px-2.5 sm:px-4 font-semibold text-right">Price</th>
+                  <th className="py-2.5 sm:py-3 px-2.5 sm:px-4 font-semibold text-right">Change</th>
+                  <th className="py-2.5 sm:py-3 px-2.5 sm:px-4 font-semibold text-center hidden md:table-cell">7-Day Chart</th>
+                  <th className="py-2.5 sm:py-3 px-2.5 sm:px-4 font-semibold text-right hidden sm:table-cell">Volume</th>
+                  <th className="py-2.5 sm:py-3 px-2.5 sm:px-4 font-semibold text-center hidden sm:table-cell">Cloud Watcher</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#1F383D]/60">
@@ -488,28 +488,28 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
                       onClick={() => onSelectStock(stock)}
                       className="hover:bg-[#152B30]/60 transition-colors cursor-pointer group"
                     >
-                      <td className="py-3.5 px-4">
-                        <div className="flex items-center gap-2">
-                          <span className="font-bold text-white font-mono group-hover:text-[#028C8C] transition-colors">
+                      <td className="py-2.5 sm:py-3.5 px-2.5 sm:px-4">
+                        <div className="flex items-center gap-1.5 sm:gap-2">
+                          <span className="font-bold text-white font-mono group-hover:text-[#028C8C] transition-colors text-xs sm:text-sm">
                             {stock.symbol}
                           </span>
                           {stock.shariahCompliant && (
-                            <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#028C8C]/20 text-[#028C8C] font-semibold border border-[#028C8C]/30">
+                            <span className="text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.2 rounded bg-[#028C8C]/20 text-[#028C8C] font-semibold border border-[#028C8C]/30 whitespace-nowrap">
                               🌙 KMI
                             </span>
                           )}
                         </div>
-                        <div className="text-[11px] text-[#9AA3AF] truncate max-w-[150px] sm:max-w-[220px]">
+                        <div className="text-[10px] sm:text-[11px] text-[#9AA3AF] truncate max-w-[120px] sm:max-w-[220px]">
                           {stock.name}
                         </div>
                       </td>
 
-                      <td className="py-3.5 px-4 text-right font-mono font-bold text-white">
+                      <td className="py-2.5 sm:py-3.5 px-2.5 sm:px-4 text-right font-mono font-bold text-white text-xs sm:text-sm whitespace-nowrap">
                         Rs {stock.currentPrice.toFixed(2)}
                       </td>
 
-                      <td className="py-3.5 px-4 text-right font-mono font-bold">
-                        <span className={`inline-flex items-center px-2 py-0.5 rounded-lg ${
+                      <td className="py-2.5 sm:py-3.5 px-2.5 sm:px-4 text-right font-mono font-bold whitespace-nowrap">
+                        <span className={`inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded-lg text-[10px] sm:text-xs ${
                           isUp 
                             ? 'text-emerald-400 bg-emerald-500/10' 
                             : 'text-rose-400 bg-rose-500/10'
@@ -518,7 +518,7 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
                         </span>
                       </td>
 
-                      <td className="py-3.5 px-4 text-center hidden md:table-cell">
+                      <td className="py-2.5 sm:py-3.5 px-2.5 sm:px-4 text-center hidden md:table-cell">
                         <div className="inline-block">
                           <Sparkline 
                             data={stock.sparkline || [stock.low, stock.currentPrice, stock.high]} 
@@ -529,11 +529,11 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
                         </div>
                       </td>
 
-                      <td className="py-3.5 px-4 text-right font-mono text-slate-300 hidden sm:table-cell">
+                      <td className="py-2.5 sm:py-3.5 px-2.5 sm:px-4 text-right font-mono text-slate-300 hidden sm:table-cell">
                         {(stock.volume / 1000000).toFixed(2)}M
                       </td>
 
-                      <td className="py-3.5 px-4 text-center" onClick={e => e.stopPropagation()}>
+                      <td className="py-2.5 sm:py-3.5 px-2.5 sm:px-4 text-center hidden sm:table-cell" onClick={e => e.stopPropagation()}>
                         <button
                           onClick={() => onSetRule(stock)}
                           className="px-2.5 py-1 rounded-full bg-[#028C8C]/15 hover:bg-[#028C8C] hover:text-white text-[#028C8C] font-bold text-[11px] border border-[#028C8C]/40 transition-all cursor-pointer"
@@ -880,7 +880,7 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
       {/* =========================================================================
           SECTION 8: INVESTIFY EXACT FOOTER
       ========================================================================= */}
-      <footer className="pt-6 pb-12 border-t border-[#1F383D] text-xs text-[#9AA3AF] space-y-4">
+      <footer className="pt-6 pb-28 md:pb-12 border-t border-[#1F383D] text-xs text-[#9AA3AF] space-y-4">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="text-lg font-bold text-white">Halal<span className="text-[#028C8C]">PSX</span></span>

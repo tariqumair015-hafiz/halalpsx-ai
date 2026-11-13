@@ -87,3 +87,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.safe-area-pb {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}

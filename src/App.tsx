@@ -15,6 +15,7 @@ import { SubscriptionModal } from './components/SubscriptionModal';
 import { SettingsModal } from './components/SettingsModal';
 import { AddHoldingModal } from './components/AddHoldingModal';
 import { InvestifyHome } from './components/InvestifyHome';
+import { BottomNav } from './components/BottomNav';
 import { Footer } from './components/Footer';
 
 import type { StockQuote, PortfolioHolding, PsxRule, TradeHistoryItem, MacroData, BrokerType, RuleTriggerType } from './types';
@@ -308,7 +309,7 @@ const MainDashboard: React.FC = () => {
           </div>
         )}
 
-        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between border-b border-[#1F383D] pb-3 overflow-x-auto">
+        <div className="hidden md:flex max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-12 items-center justify-between border-b border-[#1F383D] pb-3 overflow-x-auto">
           <div className="flex items-center gap-2">
             <button
               onClick={() => setActiveMainSection('home')}
@@ -439,12 +440,12 @@ const MainDashboard: React.FC = () => {
         </AnimatePresence>
       </main>
 
-      {/* Floating Roman Urdu AI Co-Pilot Button */}
+      {/* Floating Roman Urdu AI Co-Pilot Button (Desktop only; on mobile it's in the BottomNav) */}
       <motion.button
         whileHover={{ scale: 1.06, y: -2 }}
         whileTap={{ scale: 0.94 }}
         onClick={() => setIsAiDrawerOpen(true)}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-700 text-slate-950 font-extrabold shadow-2xl shadow-emerald-500/40 transition-all group"
+        className="hidden md:flex fixed bottom-6 right-6 z-40 items-center gap-2.5 px-4 py-3 rounded-2xl bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-700 text-slate-950 font-extrabold shadow-2xl shadow-emerald-500/40 transition-all group"
       >
         <Sparkles className="w-5 h-5 text-slate-950 animate-spin-slow" />
         <span className="text-xs sm:text-sm">Roman Urdu AI Co-Pilot</span>
@@ -519,6 +520,13 @@ const MainDashboard: React.FC = () => {
       />
 
       <Footer />
+
+      {/* Mobile Bottom Navigation Bar (Sticky Investify App Navigation) */}
+      <BottomNav
+        activeTab={activeMainSection}
+        onNavigateTab={setActiveMainSection}
+        onOpenAiDrawer={() => setIsAiDrawerOpen(true)}
+      />
     </div>
   );
 };

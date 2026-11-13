@@ -88,23 +88,23 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#1F383D]/80 bg-[#0B1012]/95 backdrop-blur-md transition-all">
-      <div className="mx-auto flex min-h-[64px] lg:min-h-[70px] w-full max-w-[1536px] items-center px-4 sm:px-6 lg:px-12 justify-between gap-4">
+      <div className="mx-auto flex min-h-[56px] sm:min-h-[64px] lg:min-h-[70px] w-full max-w-[1536px] items-center px-3 sm:px-6 lg:px-12 justify-between gap-2 sm:gap-4">
         
         {/* Left: Brand Logo & Interactive Search Bar */}
-        <div className="flex items-center gap-4 lg:gap-6 flex-1 min-w-0">
+        <div className="flex items-center gap-3 lg:gap-6 flex-1 min-w-0">
           {/* Investify-Style Brand Logo */}
           <div 
             onClick={() => onNavigateTab && onNavigateTab('home')}
-            className="flex items-center gap-2 cursor-pointer select-none shrink-0"
+            className="flex items-center gap-1.5 sm:gap-2 cursor-pointer select-none shrink-0"
           >
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#028C8C] to-[#015C5C] flex items-center justify-center shadow-lg shadow-[#028C8C]/20">
-              <span className="text-white text-base font-bold">🌙</span>
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-br from-[#028C8C] to-[#015C5C] flex items-center justify-center shadow-lg shadow-[#028C8C]/20">
+              <span className="text-white text-sm sm:text-base font-bold">🌙</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-lg sm:text-xl font-extrabold text-white tracking-tight leading-none">
+              <span className="text-base sm:text-lg font-extrabold text-white tracking-tight leading-none">
                 Halal<span className="text-[#028C8C]">PSX</span>
               </span>
-              <span className="text-[9px] font-mono text-[#028C8C] font-semibold tracking-wider uppercase mt-0.5">
+              <span className="text-[8px] sm:text-[9px] font-mono text-[#028C8C] font-semibold tracking-wider uppercase mt-0.5">
                 Investify + AI
               </span>
             </div>
@@ -340,43 +340,45 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
 
         {/* Right: User Financial Hub & AI Action */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
           
           {/* Mobile Search Toggle Button */}
           <button
             onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)}
-            className="md:hidden p-2 rounded-full bg-[#12262A] border border-[#1F383D] text-[#9AA3AF] hover:text-white cursor-pointer"
+            className="md:hidden p-1.5 sm:p-2 rounded-full bg-[#12262A] border border-[#1F383D] text-[#9AA3AF] hover:text-white cursor-pointer"
             aria-label="Toggle Search"
           >
             <Search className="w-4 h-4" />
           </button>
 
-          {/* Active Broker & Capital Badge */}
+          {/* Active Broker & Capital Badge (Responsive on Mobile) */}
           <button
             onClick={onOpenSettings}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#12262A] border border-[#1F383D] hover:border-[#028C8C] text-xs font-mono text-white transition-colors cursor-pointer shadow-sm"
+            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#12262A] border border-[#1F383D] hover:border-[#028C8C] text-[11px] sm:text-xs font-mono text-white transition-colors cursor-pointer shadow-sm"
           >
             <Building2 className="w-3.5 h-3.5 text-[#028C8C]" />
-            <span className="font-bold">{user.broker}</span>
+            <span className="hidden sm:inline font-bold">{user.broker}</span>
             <span className="hidden sm:inline text-slate-500">•</span>
-            <span className="hidden sm:inline text-emerald-400 font-extrabold">Rs {user.budget.toLocaleString()}</span>
+            <span className="text-emerald-400 font-extrabold font-mono">
+              Rs {user.budget >= 100000 ? `${(user.budget / 100000).toFixed(1)}L` : `${(user.budget / 1000).toFixed(0)}K`}
+            </span>
           </button>
 
-          {/* Halal AI Co-Pilot Button */}
+          {/* Halal AI Co-Pilot Button (Desktop only; on mobile it sits prominently in BottomNav) */}
           {onOpenAiDrawer && (
             <button
               onClick={onOpenAiDrawer}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-[#028C8C] to-[#015C5C] hover:from-[#027A7A] hover:to-[#014D4D] text-white text-xs font-bold shadow-md shadow-[#028C8C]/20 transition-all cursor-pointer"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-[#028C8C] to-[#015C5C] hover:from-[#027A7A] hover:to-[#014D4D] text-white text-xs font-bold shadow-md shadow-[#028C8C]/20 transition-all cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">AI Co-Pilot</span>
+              <span>AI Co-Pilot</span>
             </button>
           )}
 
           {/* Settings Modal Button */}
           <button
             onClick={onOpenSettings}
-            className="p-2 rounded-full bg-[#12262A] border border-[#1F383D] text-[#9AA3AF] hover:text-white hover:border-[#028C8C] transition-colors cursor-pointer"
+            className="p-1.5 sm:p-2 rounded-full bg-[#12262A] border border-[#1F383D] text-[#9AA3AF] hover:text-white hover:border-[#028C8C] transition-colors cursor-pointer"
             title="Profile & Broker Settings"
           >
             <Settings className="w-4 h-4" />
