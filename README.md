@@ -1,6 +1,12 @@
 # HalalPSX AI (Investify.pk Inspired + Islamic AI Co-Pilot) 🌙📈
 > **Pakistan's First Multi-User Shariah-Compliant PSX Portfolio Manager, Technical Screener, and Natural-Language "Buy at X, Sell at Y" Cloud Watcher SaaS Platform (Web App + Mobile PWA).**
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online%20on%20GitHub%20Pages-028C8C?style=for-the-badge&logo=github)](https://tariqumair015-hafiz.github.io/halalpsx-ai/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+
+🌍 **Live Web App:** [https://tariqumair015-hafiz.github.io/halalpsx-ai/](https://tariqumair015-hafiz.github.io/halalpsx-ai/)
+
 ---
 
 ## 🌟 Overview & Key Features
