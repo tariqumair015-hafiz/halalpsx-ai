@@ -1,0 +1,18 @@
+name = "halalpsx-worker"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+preview_urls = true
+
+[triggers]
+# PSX Market Hours Cron: 9:15 AM to 3:30 PM PKT (UTC 4:15 AM to 10:30 AM), Monday through Friday
+crons = ["*/15 4-11 * * 1-5"]
+
+[vars]
+ENVIRONMENT = "production"
+# The following environment variables can be set via `wrangler secret put <KEY>`:
+# SUPABASE_URL = "https://your-supabase-project.supabase.co"
+# SUPABASE_SERVICE_ROLE_KEY = "your-service-role-key"
+# GROQ_API_KEY = "your-groq-api-key"
+# GEMINI_API_KEY = "your-gemini-api-key"
