@@ -38,17 +38,22 @@ const MainDashboard: React.FC = () => {
   // Core Data States
   const [stocks, setStocks] = useState<StockQuote[]>(INITIAL_PSX_STOCKS);
   const [macro, setMacro] = useState<MacroData>({
-    kmi30: { index: 142850.40, change: 845.20, changePercent: 0.60 },
-    kse100: { index: 98420.15, change: 612.80, changePercent: 0.63 },
-    usdPkr: { rate: 278.45, change: -0.15 },
-    goldTolaPkr: { rate: 284500.00, change: 1200.00 },
-    silverTolaPkr: { rate: 3350.00, change: 0.00 },
-    marketBreadth: { advancing: 218, declining: 142, unchanged: 34, totalTraded: 394 },
+    kmi30: { index: 254174.09, change: 1564.51, changePercent: 0.62 },
+    kse100: { index: 178182.95, change: 309.08, changePercent: 0.17 },
+    kmiAll: { index: 68450.20, change: 420.10, changePercent: 0.62 },
+    kse30: { index: 58920.30, change: 185.40, changePercent: 0.32 },
+    usdPkr: { rate: 276.80, change: -0.15 },
+    goldTolaPkr: { rate: 398500.00, change: -1200.00 },
+    silverTolaPkr: { rate: 4650.00, change: -45.00 },
+    petrolPkr: { rate: 322.00, change: 0.00 },
+    crudeOilUsd: { rate: 72.80, change: 0.45 },
+    marketBreadth: { advancing: 234, declining: 128, unchanged: 32, totalTraded: 394 },
     fearAndGreedIndex: {
-      score: 68,
+      score: 72,
       status: 'GREED',
-      description: 'PSX sentiment is bullish. Strong institutional buying in KMI-30 Islamic constituents.',
+      description: 'PSX sentiment is strong bullish. Record institutional buying in KMI-30 Islamic constituents.',
     },
+    lastUpdated: new Date().toLocaleTimeString('en-PK', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
   });
 
   // Local Storage Initializers for Portfolios & Rules

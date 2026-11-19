@@ -11,8 +11,8 @@ export const MacroTickerBar: React.FC<MacroTickerBarProps> = ({ macro }) => {
   const breadthTotal = macro.marketBreadth.advancing + macro.marketBreadth.declining + macro.marketBreadth.unchanged;
   const advancePercent = breadthTotal > 0 ? (macro.marketBreadth.advancing / breadthTotal) * 100 : 50;
 
-  const kmiSparkline = macro.kmi30.sparkline || [141200, 141600, 142100, 141900, 142400, 142650, 142850];
-  const kseSparkline = macro.kse100.sparkline || [97200, 97500, 97900, 97800, 98100, 98250, 98420];
+  const kmiSparkline = macro.kmi30.sparkline || [251200, 252100, 253000, 252800, 253600, 253900, 254174];
+  const kseSparkline = macro.kse100.sparkline || [176500, 177100, 177800, 177600, 178000, 178050, 178182];
 
   return (
     <div className="w-full bg-[#0F1D21] border-b border-[#1F383D] text-xs overflow-x-auto no-scrollbar shadow-inner">
@@ -25,7 +25,7 @@ export const MacroTickerBar: React.FC<MacroTickerBarProps> = ({ macro }) => {
           </div>
           <span className="text-white font-mono font-bold">{macro.kmi30.index.toLocaleString()}</span>
           <span className="flex items-center text-[11px] font-mono text-[#028C8C] font-semibold">
-            +{macro.kmi30.change} (+{macro.kmi30.changePercent}%)
+            {macro.kmi30.change >= 0 ? '+' : ''}{macro.kmi30.change} ({macro.kmi30.changePercent >= 0 ? '+' : ''}{macro.kmi30.changePercent}%)
           </span>
           <Sparkline data={kmiSparkline} width={64} height={18} isUp={true} strokeWidth={1.5} />
         </div>
@@ -37,7 +37,7 @@ export const MacroTickerBar: React.FC<MacroTickerBarProps> = ({ macro }) => {
           <span className="font-semibold text-slate-300">KSE-100</span>
           <span className="text-white font-mono font-bold">{macro.kse100.index.toLocaleString()}</span>
           <span className="flex items-center text-[11px] font-mono text-[#028C8C] font-semibold">
-            +{macro.kse100.change} (+{macro.kse100.changePercent}%)
+            {macro.kse100.change >= 0 ? '+' : ''}{macro.kse100.change} ({macro.kse100.changePercent >= 0 ? '+' : ''}{macro.kse100.changePercent}%)
           </span>
           <Sparkline data={kseSparkline} width={64} height={18} isUp={true} strokeWidth={1.5} />
         </div>

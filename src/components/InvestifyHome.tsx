@@ -295,72 +295,114 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
         {/* Investify Benchmark Horizontal Index Cards */}
         <div className="flex gap-3 sm:gap-6 overflow-x-auto pb-2 no-scrollbar scroll-smooth -mx-3 px-3 sm:mx-0 sm:px-0">
           {/* Card 1: KSE-100 */}
-          <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#028C8C]/50 bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
-            <div className="flex items-center justify-between text-xs text-[#9AA3AF] mb-1">
-              <span className="font-bold text-white text-xs sm:text-sm">KSE100</span>
-              <span className="text-[#028C8C] font-bold text-[11px] sm:text-xs flex items-center">
-                <TrendingUp className="w-3 h-3 mr-0.5" /> +0.28%
-              </span>
-            </div>
-            <div className="text-lg sm:text-xl font-extrabold text-white font-mono">
-              {macro.kse100.index.toLocaleString('en-PK', { minimumFractionDigits: 2 })}
-            </div>
-            <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#9AA3AF] mt-2 font-mono">
-              <span>+500.11 pts</span>
-              <Sparkline data={macro.kse100.sparkline || [97000, 97500, 98200, 98420]} isUp={true} width={70} height={18} />
-            </div>
-          </div>
+          {(() => {
+            const isUp = macro.kse100.change >= 0;
+            return (
+              <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#028C8C]/50 bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
+                <div className="flex items-center justify-between text-xs text-[#9AA3AF] mb-1">
+                  <span className="font-bold text-white text-xs sm:text-sm">KSE100</span>
+                  <span className={`font-bold text-[11px] sm:text-xs flex items-center ${isUp ? 'text-emerald-400' : 'text-rose-400'}`}>
+                    {isUp ? <TrendingUp className="w-3 h-3 mr-0.5" /> : <TrendingDown className="w-3 h-3 mr-0.5" />}
+                    {isUp ? '+' : ''}{macro.kse100.changePercent.toFixed(2)}%
+                  </span>
+                </div>
+                <div className="text-lg sm:text-xl font-extrabold text-white font-mono">
+                  {macro.kse100.index.toLocaleString('en-PK', { minimumFractionDigits: 2 })}
+                </div>
+                <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#9AA3AF] mt-2 font-mono">
+                  <span className={isUp ? 'text-emerald-400' : 'text-rose-400'}>
+                    {isUp ? '+' : ''}{macro.kse100.change.toFixed(2)} pts
+                  </span>
+                  <Sparkline data={macro.kse100.sparkline || [176500, 177100, 177800, 178182]} isUp={isUp} width={70} height={18} />
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Card 2: KMI-30 (Islamic Benchmark) */}
-          <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#028C8C] bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
-            <div className="flex items-center justify-between text-xs mb-1">
-              <span className="font-bold text-white text-xs sm:text-sm flex items-center gap-1">
-                <span>🌙</span> KMI30
-              </span>
-              <span className="text-[#028C8C] font-bold text-[11px] sm:text-xs flex items-center">
-                <TrendingUp className="w-3 h-3 mr-0.5" /> +0.60%
-              </span>
-            </div>
-            <div className="text-lg sm:text-xl font-extrabold text-white font-mono">
-              {macro.kmi30.index.toLocaleString('en-PK', { minimumFractionDigits: 2 })}
-            </div>
-            <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#028C8C] mt-2 font-mono">
-              <span>+845.20 pts</span>
-              <Sparkline data={macro.kmi30.sparkline || [141000, 142000, 142850]} isUp={true} width={70} height={18} />
-            </div>
-          </div>
+          {(() => {
+            const isUp = macro.kmi30.change >= 0;
+            return (
+              <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#028C8C] bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
+                <div className="flex items-center justify-between text-xs mb-1">
+                  <span className="font-bold text-white text-xs sm:text-sm flex items-center gap-1">
+                    <span>🌙</span> KMI30
+                  </span>
+                  <span className={`font-bold text-[11px] sm:text-xs flex items-center ${isUp ? 'text-emerald-400' : 'text-rose-400'}`}>
+                    {isUp ? <TrendingUp className="w-3 h-3 mr-0.5" /> : <TrendingDown className="w-3 h-3 mr-0.5" />}
+                    {isUp ? '+' : ''}{macro.kmi30.changePercent.toFixed(2)}%
+                  </span>
+                </div>
+                <div className="text-lg sm:text-xl font-extrabold text-white font-mono">
+                  {macro.kmi30.index.toLocaleString('en-PK', { minimumFractionDigits: 2 })}
+                </div>
+                <div className="flex items-center justify-between text-[10px] sm:text-[11px] mt-2 font-mono">
+                  <span className={isUp ? 'text-emerald-400' : 'text-rose-400'}>
+                    {isUp ? '+' : ''}{macro.kmi30.change.toFixed(2)} pts
+                  </span>
+                  <Sparkline data={macro.kmi30.sparkline || [251200, 252500, 253600, 254174]} isUp={isUp} width={70} height={18} />
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Card 3: KMI-ALL */}
-          <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#1F383D] bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
-            <div className="flex items-center justify-between text-xs text-[#9AA3AF] mb-1">
-              <span className="font-bold text-white text-xs sm:text-sm flex items-center gap-1">
-                <span>🌙</span> KMIALL
-              </span>
-              <span className="text-[#028C8C] font-bold text-[11px] sm:text-xs flex items-center">
-                <TrendingUp className="w-3 h-3 mr-0.5" /> +0.55%
-              </span>
-            </div>
-            <div className="text-lg sm:text-xl font-extrabold text-white font-mono">35,420.80</div>
-            <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#9AA3AF] mt-2 font-mono">
-              <span>+194.30 pts</span>
-              <Sparkline data={[34800, 35100, 35300, 35420]} isUp={true} width={70} height={18} />
-            </div>
-          </div>
+          {(() => {
+            const kmiAllIndex = macro.kmiAll?.index || 68450.20;
+            const kmiAllChange = macro.kmiAll?.change ?? 420.10;
+            const kmiAllPct = macro.kmiAll?.changePercent ?? 0.62;
+            const isUp = kmiAllChange >= 0;
+            return (
+              <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#1F383D] bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
+                <div className="flex items-center justify-between text-xs text-[#9AA3AF] mb-1">
+                  <span className="font-bold text-white text-xs sm:text-sm flex items-center gap-1">
+                    <span>🌙</span> KMIALL
+                  </span>
+                  <span className={`font-bold text-[11px] sm:text-xs flex items-center ${isUp ? 'text-emerald-400' : 'text-rose-400'}`}>
+                    {isUp ? <TrendingUp className="w-3 h-3 mr-0.5" /> : <TrendingDown className="w-3 h-3 mr-0.5" />}
+                    {isUp ? '+' : ''}{kmiAllPct.toFixed(2)}%
+                  </span>
+                </div>
+                <div className="text-lg sm:text-xl font-extrabold text-white font-mono">
+                  {kmiAllIndex.toLocaleString('en-PK', { minimumFractionDigits: 2 })}
+                </div>
+                <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#9AA3AF] mt-2 font-mono">
+                  <span className={isUp ? 'text-emerald-400' : 'text-rose-400'}>
+                    {isUp ? '+' : ''}{kmiAllChange.toFixed(2)} pts
+                  </span>
+                  <Sparkline data={macro.kmiAll?.sparkline || [67800, 68100, 68350, 68450]} isUp={isUp} width={70} height={18} />
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Card 4: KSE-30 */}
-          <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#1F383D] bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
-            <div className="flex items-center justify-between text-xs text-[#9AA3AF] mb-1">
-              <span className="font-bold text-white text-xs sm:text-sm">KSE30</span>
-              <span className="text-[#028C8C] font-bold text-[11px] sm:text-xs flex items-center">
-                <TrendingUp className="w-3 h-3 mr-0.5" /> +0.72%
-              </span>
-            </div>
-            <div className="text-lg sm:text-xl font-extrabold text-white font-mono">30,118.40</div>
-            <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#9AA3AF] mt-2 font-mono">
-              <span>+215.10 pts</span>
-              <Sparkline data={[29800, 30000, 30050, 30118]} isUp={true} width={70} height={18} />
-            </div>
-          </div>
+          {(() => {
+            const kse30Index = macro.kse30?.index || 58920.30;
+            const kse30Change = macro.kse30?.change ?? 185.40;
+            const kse30Pct = macro.kse30?.changePercent ?? 0.32;
+            const isUp = kse30Change >= 0;
+            return (
+              <div className="min-w-[180px] sm:min-w-[240px] shrink-0 rounded-2xl sm:rounded-[22px] border border-[#1F383D] bg-[#12262A] p-3 sm:p-4 text-left shadow-lg">
+                <div className="flex items-center justify-between text-xs text-[#9AA3AF] mb-1">
+                  <span className="font-bold text-white text-xs sm:text-sm">KSE30</span>
+                  <span className={`font-bold text-[11px] sm:text-xs flex items-center ${isUp ? 'text-emerald-400' : 'text-rose-400'}`}>
+                    {isUp ? <TrendingUp className="w-3 h-3 mr-0.5" /> : <TrendingDown className="w-3 h-3 mr-0.5" />}
+                    {isUp ? '+' : ''}{kse30Pct.toFixed(2)}%
+                  </span>
+                </div>
+                <div className="text-lg sm:text-xl font-extrabold text-white font-mono">
+                  {kse30Index.toLocaleString('en-PK', { minimumFractionDigits: 2 })}
+                </div>
+                <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#9AA3AF] mt-2 font-mono">
+                  <span className={isUp ? 'text-emerald-400' : 'text-rose-400'}>
+                    {isUp ? '+' : ''}{kse30Change.toFixed(2)} pts
+                  </span>
+                  <Sparkline data={macro.kse30?.sparkline || [58200, 58550, 58800, 58920]} isUp={isUp} width={70} height={18} />
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </section>
 
@@ -568,8 +610,12 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
             <div className="text-[10px] text-[#F5B301] font-bold uppercase flex items-center gap-1">
               <Coins className="w-3 h-3" /> Gold 24K (Tola)
             </div>
-            <div className="text-sm font-bold text-white mt-1">Rs 414,800</div>
-            <div className="text-[10px] text-rose-400">▼ Rs 200 today</div>
+            <div className="text-sm font-bold text-white mt-1">
+              Rs {macro.goldTolaPkr.rate.toLocaleString('en-PK')}
+            </div>
+            <div className={`text-[10px] ${macro.goldTolaPkr.change >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+              {macro.goldTolaPkr.change >= 0 ? '▲' : '▼'} Rs {Math.abs(macro.goldTolaPkr.change).toLocaleString()} today
+            </div>
           </div>
 
           {/* Silver */}
@@ -577,8 +623,12 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
             <div className="text-[10px] text-slate-300 font-bold uppercase flex items-center gap-1">
               <Coins className="w-3 h-3" /> Silver (Tola)
             </div>
-            <div className="text-sm font-bold text-white mt-1">Rs 5,467</div>
-            <div className="text-[10px] text-rose-400">▼ Rs 111 today</div>
+            <div className="text-sm font-bold text-white mt-1">
+              Rs {macro.silverTolaPkr.rate.toLocaleString('en-PK')}
+            </div>
+            <div className={`text-[10px] ${macro.silverTolaPkr.change >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+              {macro.silverTolaPkr.change >= 0 ? '▲' : '▼'} Rs {Math.abs(macro.silverTolaPkr.change).toLocaleString()} today
+            </div>
           </div>
 
           {/* USD / PKR */}
@@ -586,8 +636,12 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
             <div className="text-[10px] text-[#028C8C] font-bold uppercase flex items-center gap-1">
               <DollarSign className="w-3 h-3" /> USD / PKR
             </div>
-            <div className="text-sm font-bold text-white mt-1">Rs 278.45</div>
-            <div className="text-[10px] text-[#028C8C]">▼ 0.15 (Interbank)</div>
+            <div className="text-sm font-bold text-white mt-1">
+              Rs {macro.usdPkr.rate.toFixed(2)}
+            </div>
+            <div className={`text-[10px] ${macro.usdPkr.change <= 0 ? 'text-[#028C8C]' : 'text-rose-400'}`}>
+              {macro.usdPkr.change <= 0 ? '▼' : '▲'} {Math.abs(macro.usdPkr.change).toFixed(2)} (Interbank)
+            </div>
           </div>
 
           {/* Petrol */}
@@ -595,8 +649,10 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
             <div className="text-[10px] text-cyan-400 font-bold uppercase flex items-center gap-1">
               <Fuel className="w-3 h-3" /> Petrol (Litre)
             </div>
-            <div className="text-sm font-bold text-white mt-1">Rs 247.03</div>
-            <div className="text-[10px] text-slate-500">OGRA official</div>
+            <div className="text-sm font-bold text-white mt-1">
+              Rs {(macro.petrolPkr?.rate || 322.00).toFixed(2)}
+            </div>
+            <div className="text-[10px] text-slate-400">OGRA official</div>
           </div>
 
           {/* Crude Oil */}
@@ -604,8 +660,12 @@ export const InvestifyHome: React.FC<InvestifyHomeProps> = ({
             <div className="text-[10px] text-[#F5B301] font-bold uppercase flex items-center gap-1">
               <Flame className="w-3 h-3" /> Brent Crude
             </div>
-            <div className="text-sm font-bold text-white mt-1">$72.50 / bbl</div>
-            <div className="text-[10px] text-[#028C8C]">▲ +0.45%</div>
+            <div className="text-sm font-bold text-white mt-1">
+              ${(macro.crudeOilUsd?.rate || 72.80).toFixed(2)} / bbl
+            </div>
+            <div className={`text-[10px] ${(macro.crudeOilUsd?.change ?? 0.45) >= 0 ? 'text-[#028C8C]' : 'text-rose-400'}`}>
+              {(macro.crudeOilUsd?.change ?? 0.45) >= 0 ? '▲ +' : '▼ -'}{Math.abs(macro.crudeOilUsd?.change ?? 0.45)}%
+            </div>
           </div>
         </div>
       </section>
